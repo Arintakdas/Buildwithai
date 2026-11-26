@@ -167,7 +167,7 @@ export function initProjectSubmission() {
     return lines.join('\n');
   }
 
-  function renderSuccessCard(payload, postedRemotely) {
+  function renderSuccessCard(payload, postedRemotely, submissionId) {
     if (!resultBox) {
       return;
     }
@@ -182,7 +182,9 @@ export function initProjectSubmission() {
     const heading = document.createElement('h3');
     heading.className = 'submit-success-card__title';
     heading.textContent = postedRemotely
-      ? 'Project submitted! Confirmation email sent.'
+      ? (submissionId
+          ? 'Project submitted! ID: ' + submissionId
+          : 'Project submitted! Confirmation email sent.')
       : 'Submission details ready';
     card.appendChild(heading);
 
@@ -197,6 +199,7 @@ export function initProjectSubmission() {
     list.className = 'verify__card-details';
 
     const rows = [
+      ...(submissionId ? [['Submission ID', submissionId]] : []),
       ['Name', payload.name],
       ['Department & Year', payload.department],
       ['Roll Number', payload.rollNo],
@@ -335,8 +338,20 @@ export function initProjectSubmission() {
         if (!res.ok) {
           throw new Error('HTTP ' + res.status);
         }
-        renderSuccessCard(payload, true);
-        showToast('Project submitted! Confirmation email sent to ' + payload.email + '.', 'success');
+        let responseData = {};
+        try {
+          responseData = await res.json();
+        } catch (_parseErr) {
+          responseData = {};
+        }
+        const submissionId = responseData.submissionId || '';
+        renderSuccessCard(payload, true, submissionId);
+        showToast(
+          submissionId
+            ? 'Submitted (' + submissionId + ')! Confirmation email sent to ' + payload.email + '.'
+            : 'Project submitted! Confirmation email sent to ' + payload.email + '.',
+          'success'
+        );
         form.reset();
       } catch (_err) {
         showError('Could not reach the submission server. Please try again or use the Copy/Email option below.');
