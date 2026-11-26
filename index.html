@@ -22,7 +22,7 @@
   <meta name="twitter:image" content="https://[YOUR-DOMAIN]/images/venue.jpg">
 
   <!-- Content Security Policy -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src https://fonts.gstatic.com; img-src 'self' data:; frame-src https://www.google.com/maps/; connect-src 'self'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src https://fonts.gstatic.com; img-src 'self' data:; frame-src https://www.google.com/maps/; connect-src 'self' https://script.google.com https://script.googleusercontent.com">
 
   <!-- Preconnect -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -548,18 +548,33 @@
             </div>
 
             <div class="submit-field">
-              <label for="submit-cert-id" class="submit-label">
-                Certificate / Participant ID <span class="submit-required" aria-hidden="true">*</span>
+              <label for="submit-roll" class="submit-label">
+                Roll Number <span class="submit-required" aria-hidden="true">*</span>
               </label>
               <input
                 type="text"
-                id="submit-cert-id"
-                name="certId"
+                id="submit-roll"
+                name="rollNo"
                 class="submit-input"
-                placeholder="ENTROPY-2026-03-XXXXXXXX"
+                placeholder="Your college roll number"
                 required
                 autocomplete="off"
                 spellcheck="false"
+              >
+            </div>
+
+            <div class="submit-field">
+              <label for="submit-email" class="submit-label">
+                Email Address <span class="submit-required" aria-hidden="true">*</span>
+              </label>
+              <input
+                type="email"
+                id="submit-email"
+                name="email"
+                class="submit-input"
+                placeholder="you@example.com"
+                required
+                autocomplete="email"
               >
             </div>
 
@@ -578,7 +593,7 @@
               </select>
             </div>
 
-            <div class="submit-field submit-field--full">
+            <div class="submit-field">
               <label for="submit-title" class="submit-label">
                 Project Title <span class="submit-required" aria-hidden="true">*</span>
               </label>

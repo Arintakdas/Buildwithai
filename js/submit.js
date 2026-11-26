@@ -3,24 +3,24 @@
  * ---------
  * ES module for the static Project Submission section (#submit).
  * Validates all mandatory fields (individual name, department/year,
- * certificate ID, project title, category, description, Git repository URL)
- * plus the optional deployed website URL.
+ * roll number, email address, project title, category, description,
+ * Git repository URL) plus the optional deployed website URL.
  *
- * Because the website is 100% static, valid submissions either:
- *   1. POST to FORM_ENDPOINT if configured (e.g. Formspree / Web3Forms), or
- *   2. Render a verified submission summary card with Copy & Email actions.
+ * When GOOGLE_APPS_SCRIPT_URL is configured (using scripts/google_apps_script.gs),
+ * submissions are saved directly to Google Sheets (exportable as .xlsx) and
+ * trigger an automatic confirmation email to the participant.
  *
  * All DOM updates use createElement and textContent (never innerHTML).
  */
 
 /**
- * Optional static-form backend endpoint (e.g. Formspree or Web3Forms URL).
- * Leave empty to use the built-in summary + copy + email workflow.
+ * Paste your deployed Google Apps Script Web App URL here to enable
+ * automatic Google Sheets storage + participant confirmation emails.
  */
-const FORM_ENDPOINT = '';
+const GOOGLE_APPS_SCRIPT_URL = '';
 
 /**
- * Optional organizer email for the pre-filled mailto fallback.
+ * Fallback organizer email for the mailto button if Apps Script is not set.
  */
 const ORGANIZER_EMAIL = 'gdgoncampus.gcetts@example.com';
 
@@ -33,6 +33,10 @@ function isValidHttpUrl(value) {
   }
 }
 
+function isValidEmail(value) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+}
+
 export function initProjectSubmission() {
   const form = document.getElementById('project-submit-form');
   if (!form) {
@@ -41,7 +45,8 @@ export function initProjectSubmission() {
 
   const nameInput = document.getElementById('submit-name');
   const deptInput = document.getElementById('submit-dept');
-  const certInput = document.getElementById('submit-cert-id');
+  const rollInput = document.getElementById('submit-roll');
+  const emailInput = document.getElementById('submit-email');
   const titleInput = document.getElementById('submit-title');
   const categoryInput = document.getElementById('submit-category');
   const descInput = document.getElementById('submit-description');
@@ -81,7 +86,8 @@ export function initProjectSubmission() {
       '---------------------------------------',
       'Name: ' + payload.name,
       'Department & Year: ' + payload.department,
-      'Certificate ID: ' + payload.certId,
+      'Roll Number: ' + payload.rollNo,
+      'Email: ' + payload.email,
       'Project Title: ' + payload.title,
       'Category: ' + payload.category,
       'Description: ' + payload.description,
@@ -107,15 +113,15 @@ export function initProjectSubmission() {
     const heading = document.createElement('h3');
     heading.className = 'submit-success-card__title';
     heading.textContent = postedRemotely
-      ? 'Project submitted successfully'
+      ? 'Project submitted! Confirmation email sent.'
       : 'Submission details ready';
     card.appendChild(heading);
 
     const sub = document.createElement('p');
     sub.className = 'submit-success-card__subtitle';
     sub.textContent = postedRemotely
-      ? 'Your project entry has been recorded.'
-      : 'Copy your formatted submission summary below or send it directly via email to the organizers.';
+      ? 'Your project has been recorded and a confirmation email has been sent to ' + payload.email + '.'
+      : 'Paste your Google Apps Script URL in js/submit.js for automatic Sheet + Email delivery, or copy/email your summary below.';
     card.appendChild(sub);
 
     const list = document.createElement('dl');
@@ -124,7 +130,8 @@ export function initProjectSubmission() {
     const rows = [
       ['Name', payload.name],
       ['Department & Year', payload.department],
-      ['Certificate ID', payload.certId],
+      ['Roll Number', payload.rollNo],
+      ['Email', payload.email],
       ['Project Title', payload.title],
       ['Category', payload.category],
       ['Git Repository', payload.gitUrl],
@@ -198,7 +205,8 @@ export function initProjectSubmission() {
     const payload = {
       name: (nameInput ? nameInput.value : '').trim(),
       department: (deptInput ? deptInput.value : '').trim(),
-      certId: (certInput ? certInput.value : '').trim().toUpperCase(),
+      rollNo: (rollInput ? rollInput.value : '').trim().toUpperCase(),
+      email: (emailInput ? emailInput.value : '').trim(),
       title: (titleInput ? titleInput.value : '').trim(),
       category: (categoryInput ? categoryInput.value : '').trim(),
       description: (descInput ? descInput.value : '').trim(),
@@ -214,16 +222,20 @@ export function initProjectSubmission() {
       showError('Please enter your department and year.', deptInput);
       return;
     }
-    if (!payload.certId) {
-      showError('Please enter your certificate / participant ID.', certInput);
+    if (!payload.rollNo) {
+      showError('Please enter your college roll number.', rollInput);
       return;
     }
-    if (!payload.title) {
-      showError('Please enter your project title.', titleInput);
+    if (!payload.email || !isValidEmail(payload.email)) {
+      showError('Please enter a valid email address for your confirmation email.', emailInput);
       return;
     }
     if (!payload.category) {
       showError('Please select a project category.', categoryInput);
+      return;
+    }
+    if (!payload.title) {
+      showError('Please enter your project title.', titleInput);
       return;
     }
     if (!payload.description) {
@@ -239,22 +251,25 @@ export function initProjectSubmission() {
       return;
     }
 
-    if (FORM_ENDPOINT) {
+    if (GOOGLE_APPS_SCRIPT_URL) {
       if (submitBtn) {
         submitBtn.disabled = true;
         submitBtn.textContent = 'Submitting...';
       }
       try {
-        const res = await fetch(FORM_ENDPOINT, {
+        // Use text/plain to avoid CORS preflight with Google Apps Script
+        const res = await fetch(GOOGLE_APPS_SCRIPT_URL, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
           body: JSON.stringify(payload)
         });
         if (!res.ok) {
           throw new Error('HTTP ' + res.status);
         }
         renderSuccessCard(payload, true);
+        form.reset();
       } catch (_err) {
+        showError('Could not reach the submission server. Please try again or use the Copy/Email option below.');
         renderSuccessCard(payload, false);
       } finally {
         if (submitBtn) {
