@@ -17,7 +17,7 @@
  * Paste your deployed Google Apps Script Web App URL here to enable
  * automatic Google Sheets storage + participant confirmation emails.
  */
-const GOOGLE_APPS_SCRIPT_URL = '';
+const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyMeVThjckNFzThP6mat1pW0DsZJZFVhzs946ab3d9wa1w1nS1gdwtq26LVArO2ssFOBg/exec';
 
 /**
  * Fallback organizer email for the mailto button if Apps Script is not set.
