@@ -1,0 +1,13 @@
+# Keep raw participant spreadsheets with PII out of git history
+ABCparticipants.xlsx
+data.xlsx
+
+# Python cache and virtual environments
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# OS files
+.DS_Store
+Thumbs.db

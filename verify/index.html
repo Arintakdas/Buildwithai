@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verify Certificate | Build with AI: ABC</title>
+  <meta name="description" content="Verify the authenticity of a Build with AI: ABC certificate issued by GDG on Campus GCETTS in collaboration with Entropy Coding Club.">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#4285F4">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src https://fonts.gstatic.com; img-src 'self' data:; frame-src https://www.google.com/maps/; connect-src 'self'">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M9 18L3 12L9 6' stroke='%234285F4' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M15 6L21 12L15 18' stroke='%23EA4335' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-to-content">Skip to main content</a>
+
+  <header class="navbar" id="main-nav">
+    <div class="container navbar__inner">
+      <a href="/" class="navbar__brand" aria-label="GDG on Campus GCETTS Home">
+        <svg class="navbar__brand-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M9 18L3 12L9 6" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M15 6L21 12L15 18" stroke="#EA4335" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>GDG on Campus GCETTS</span>
+      </a>
+
+      <nav aria-label="Primary navigation">
+        <ul class="navbar__links">
+          <li><a href="/#about" class="navbar__link">About</a></li>
+          <li><a href="/#tools" class="navbar__link">Tools</a></li>
+          <li><a href="/#schedule" class="navbar__link">Schedule</a></li>
+          <li><a href="/notices/" class="navbar__link">Notices</a></li>
+          <li><a href="/#winners" class="navbar__link">Winners</a></li>
+          <li><a href="/verify/" class="navbar__link navbar__link--active" aria-current="page">Verify</a></li>
+          <li><a href="/#venue" class="navbar__link">Venue</a></li>
+          <li><a href="/#faq" class="navbar__link">FAQ</a></li>
+        </ul>
+      </nav>
+
+      <a href="/notices/" class="btn btn-secondary btn-sm navbar__cta">Notices</a>
+
+      <button type="button" class="navbar__hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+        <span class="navbar__hamburger-line"></span>
+        <span class="navbar__hamburger-line"></span>
+        <span class="navbar__hamburger-line"></span>
+      </button>
+    </div>
+
+    <div class="navbar__mobile-menu" id="mobile-menu">
+      <a href="/#about" class="navbar__mobile-link">About</a>
+      <a href="/#tools" class="navbar__mobile-link">Tools</a>
+      <a href="/#schedule" class="navbar__mobile-link">Schedule</a>
+      <a href="/notices/" class="navbar__mobile-link">Notices</a>
+      <a href="/#winners" class="navbar__mobile-link">Winners</a>
+      <a href="/verify/" class="navbar__mobile-link">Verify</a>
+      <a href="/#venue" class="navbar__mobile-link">Venue</a>
+      <a href="/#faq" class="navbar__mobile-link">FAQ</a>
+    </div>
+  </header>
+
+  <main id="main-content" class="section-padding">
+    <div class="container">
+      <div class="text-center" data-reveal="fade-up">
+        <span class="section-label">Certificate Verification</span>
+        <h1 class="section-title">Verify Certificate</h1>
+        <p class="section-subtitle">
+          Enter your certificate number or scan the QR code on your certificate to verify its authenticity.
+        </p>
+      </div>
+
+      <div class="verify-badge-wrap" style="display:flex;justify-content:center;margin:1.5rem auto;">
+        <div id="verify-badge-container" aria-hidden="true" style="width:140px;height:140px;position:relative;"></div>
+        <div id="verify-badge-fallback" hidden aria-hidden="true" style="width:96px;height:96px;display:flex;align-items:center;justify-content:center;border-radius:24px;background:var(--color-surface-variant, #F8F9FA);border:1px solid var(--color-border, #DADCE0);">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <path d="M9 12l2 2 4-4"/>
+          </svg>
+        </div>
+      </div>
+
+      <form id="verify-form" class="verify__input-group" style="max-width:560px;margin:0 auto 2rem;" novalidate>
+        <label for="cert-id-input" class="sr-only">Certificate Number</label>
+        <input
+          type="text"
+          id="cert-id-input"
+          class="verify__input"
+          placeholder="ENTROPY-2026-03-XXXXXXXX"
+          autocomplete="off"
+          spellcheck="false"
+          pattern="[A-Za-z0-9-]+"
+          aria-describedby="verify-input-error"
+        >
+        <button type="submit" id="verify-btn" class="btn btn-primary" style="min-height:48px;">Verify</button>
+      </form>
+
+      <p id="verify-input-error" class="text-center" role="alert" hidden style="color:#c5221f;margin-bottom:1.5rem;font-weight:500;"></p>
+
+      <div id="verify-result" class="verify__result" aria-live="polite" style="max-width:640px;margin:0 auto;">
+        <!-- Loading skeleton -->
+        <div id="verify-loading" class="verify__skeleton" hidden>
+          <div style="display:flex;flex-direction:column;gap:0.75rem;padding:2rem;border-radius:20px;border:1px solid var(--color-border, #DADCE0);background:var(--color-surface, #FFFFFF);">
+            <div style="height:24px;width:55%;background:#E8EAED;border-radius:8px;"></div>
+            <div style="height:16px;width:85%;background:#F1F3F4;border-radius:8px;"></div>
+            <div style="height:16px;width:70%;background:#F1F3F4;border-radius:8px;"></div>
+            <p style="margin-top:0.5rem;color:var(--color-text-secondary, #5F6368);">Verifying certificate...</p>
+          </div>
+        </div>
+
+        <!-- Verified state -->
+        <section id="verify-success" class="verify__card verify__card--verified" hidden aria-label="Verified certificate details">
+          <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem;">
+            <svg class="verify__card-icon" width="36" height="36" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="12" cy="12" r="10" fill="#34A853"/>
+              <path d="M8 12.5l2.5 2.5 5.5-5.5" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <h2 class="verify__card-title" style="margin:0;">This certificate is authentic</h2>
+          </div>
+
+          <div class="verify__card-details">
+            <div class="verify__card-row">
+              <span class="verify__card-label">Participant Name</span>
+              <span class="verify__card-value" id="result-name">-</span>
+            </div>
+            <div class="verify__card-row">
+              <span class="verify__card-label">College</span>
+              <span class="verify__card-value" id="result-college">-</span>
+            </div>
+            <div class="verify__card-row">
+              <span class="verify__card-label">Department</span>
+              <span class="verify__card-value" id="result-department">-</span>
+            </div>
+            <div class="verify__card-row">
+              <span class="verify__card-label">Year</span>
+              <span class="verify__card-value" id="result-year">-</span>
+            </div>
+            <div class="verify__card-row">
+              <span class="verify__card-label">Role</span>
+              <span class="verify__card-value" id="result-role">-</span>
+            </div>
+            <div class="verify__card-row">
+              <span class="verify__card-label">Event</span>
+              <span class="verify__card-value" id="result-event">-</span>
+            </div>
+            <div class="verify__card-row">
+              <span class="verify__card-label">Issue Date</span>
+              <span class="verify__card-value" id="result-issue-date">-</span>
+            </div>
+            <div class="verify__card-row">
+              <span class="verify__card-label">Certificate Number</span>
+              <span class="verify__card-value" id="result-cert-id">-</span>
+            </div>
+          </div>
+
+          <p style="margin-top:1.25rem;font-size:0.95rem;color:var(--color-text-secondary, #5F6368);">
+            Issued by GDG on Campus GCETTS in collaboration with Entropy Coding Club
+          </p>
+          <p id="result-verify-time" style="margin-top:0.25rem;font-size:0.875rem;color:var(--color-text-secondary, #5F6368);"></p>
+
+          <div style="display:flex;flex-wrap:wrap;gap:0.75rem;margin-top:1.5rem;">
+            <button type="button" id="copy-link-btn" class="btn btn-secondary" style="min-height:48px;">Copy verification link</button>
+            <button type="button" id="print-btn" class="btn btn-secondary" style="min-height:48px;">Print this page</button>
+            <button type="button" data-action="verify-another" class="btn btn-primary" style="min-height:48px;">Verify another certificate</button>
+          </div>
+          <p id="copy-feedback" role="status" hidden style="margin-top:0.75rem;font-size:0.9rem;color:#0d652d;font-weight:500;"></p>
+        </section>
+
+        <!-- Not found state -->
+        <section id="verify-not-found" class="verify__card verify__card--not-found" hidden aria-label="Certificate not found">
+          <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.75rem;">
+            <svg class="verify__card-icon" width="36" height="36" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="12" cy="12" r="10" fill="#EA4335"/>
+              <path d="M15 9l-6 6M9 9l6 6" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round"/>
+            </svg>
+            <h2 class="verify__card-title" style="margin:0;">No certificate matches this number</h2>
+          </div>
+          <p>Check the number and try again.</p>
+          <button type="button" data-action="verify-another" class="btn btn-secondary" style="min-height:48px;margin-top:1rem;">Try again</button>
+        </section>
+
+        <!-- Revoked state -->
+        <section id="verify-revoked" class="verify__card verify__card--revoked" hidden aria-label="Certificate revoked">
+          <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.75rem;">
+            <svg class="verify__card-icon" width="36" height="36" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 2L1 21h22L12 2z" fill="#FBBC04"/>
+              <path d="M12 9v4M12 17h.01" stroke="#202124" stroke-width="2.2" stroke-linecap="round"/>
+            </svg>
+            <h2 class="verify__card-title" style="margin:0;">This certificate is no longer valid</h2>
+          </div>
+          <p>This certificate has been revoked by the issuing organizers.</p>
+          <button type="button" data-action="verify-another" class="btn btn-secondary" style="min-height:48px;margin-top:1rem;">Verify another</button>
+        </section>
+
+        <!-- Network error state -->
+        <section id="verify-error" class="verify__card verify__card--error" hidden aria-label="Verification error">
+          <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.75rem;">
+            <svg class="verify__card-icon" width="36" height="36" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="12" cy="12" r="10" fill="#EA4335"/>
+              <path d="M12 8v5M12 16h.01" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round"/>
+            </svg>
+            <h2 class="verify__card-title" style="margin:0;">Something went wrong</h2>
+          </div>
+          <p>Could not connect to the verification server. Please check your connection and try again.</p>
+          <button type="button" id="retry-btn" class="btn btn-primary" style="min-height:48px;margin-top:1rem;">Retry</button>
+        </section>
+      </div>
+
+      <div class="text-center" style="margin-top:2.5rem;">
+        <a href="/" class="btn btn-secondary" style="min-height:48px;">Back to home</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__bottom">
+        <p class="footer__copyright">Organized by GDG on Campus GCETTS in collaboration with Entropy Coding Club</p>
+        <p class="footer__copyright">This is a community event and is not an official Google event.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="/js/verify.js"></script>
+</body>
+</html>
