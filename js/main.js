@@ -29,6 +29,7 @@ import { initNav } from '/js/nav.js';
 import { initLeaderboard } from '/js/leaderboard.js';
 import { initNoticeBoard } from '/js/notices.js';
 import { verifyCertificate } from '/js/data-loader.js';
+import { initProjectSubmission } from '/js/submit.js';
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -518,6 +519,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
     });
+  });
+
+  // -----------------------------------------------------------------------
+  // 10. Project Submission form
+  // -----------------------------------------------------------------------
+  safeInit('Project Submission', () => {
+    initProjectSubmission();
   });
 
 }); // end DOMContentLoaded

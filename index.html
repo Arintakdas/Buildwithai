@@ -84,6 +84,7 @@
           <li><a href="#schedule" class="navbar__link">Schedule</a></li>
           <li><a href="/notices/" class="navbar__link">Notices</a></li>
           <li><a href="#winners" class="navbar__link">Winners</a></li>
+          <li><a href="#submit" class="navbar__link">Submit</a></li>
           <li><a href="/verify/" class="navbar__link">Verify</a></li>
           <li><a href="#venue" class="navbar__link">Venue</a></li>
           <li><a href="#faq" class="navbar__link">FAQ</a></li>
@@ -105,6 +106,7 @@
       <a href="#schedule" class="navbar__mobile-link">Schedule</a>
       <a href="/notices/" class="navbar__mobile-link">Notices</a>
       <a href="#winners" class="navbar__mobile-link">Winners</a>
+      <a href="#submit" class="navbar__mobile-link">Submit</a>
       <a href="/verify/" class="navbar__mobile-link">Verify</a>
       <a href="#venue" class="navbar__mobile-link">Venue</a>
       <a href="#faq" class="navbar__mobile-link">FAQ</a>
@@ -502,8 +504,150 @@
       </div>
     </section>
 
+    <!-- 9.5 Project Submission -->
+    <section id="submit" class="section-padding" data-reveal="fade-up">
+      <div class="container">
+        <div class="text-center">
+          <div class="google-dots" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+          <span class="section-label">Showcase Your Build</span>
+          <h2 class="section-title">Project Submission</h2>
+          <p class="section-subtitle">
+            Submit your individual project details, Git repository link, and optional live website URL.
+          </p>
+        </div>
+
+        <div class="submit-card">
+          <form id="project-submit-form" class="submit-form" novalidate>
+            <div class="submit-field">
+              <label for="submit-name" class="submit-label">
+                Individual Name <span class="submit-required" aria-hidden="true">*</span>
+              </label>
+              <input
+                type="text"
+                id="submit-name"
+                name="name"
+                class="submit-input"
+                placeholder="Your full name"
+                required
+                autocomplete="name"
+              >
+            </div>
+
+            <div class="submit-field">
+              <label for="submit-dept" class="submit-label">
+                Department &amp; Year <span class="submit-required" aria-hidden="true">*</span>
+              </label>
+              <input
+                type="text"
+                id="submit-dept"
+                name="department"
+                class="submit-input"
+                placeholder="e.g. CSE - 2nd Year"
+                required
+              >
+            </div>
+
+            <div class="submit-field">
+              <label for="submit-cert-id" class="submit-label">
+                Certificate / Participant ID <span class="submit-required" aria-hidden="true">*</span>
+              </label>
+              <input
+                type="text"
+                id="submit-cert-id"
+                name="certId"
+                class="submit-input"
+                placeholder="ENTROPY-2026-03-XXXXXXXX"
+                required
+                autocomplete="off"
+                spellcheck="false"
+              >
+            </div>
+
+            <div class="submit-field">
+              <label for="submit-category" class="submit-label">
+                Category <span class="submit-required" aria-hidden="true">*</span>
+              </label>
+              <select id="submit-category" name="category" class="submit-select" required>
+                <option value="">Select a category</option>
+                <option value="Campus Utility">Campus Utility</option>
+                <option value="Education">Education</option>
+                <option value="Productivity">Productivity</option>
+                <option value="Sustainability">Sustainability</option>
+                <option value="Healthcare">Healthcare</option>
+                <option value="Open Innovation">Open Innovation</option>
+              </select>
+            </div>
+
+            <div class="submit-field submit-field--full">
+              <label for="submit-title" class="submit-label">
+                Project Title <span class="submit-required" aria-hidden="true">*</span>
+              </label>
+              <input
+                type="text"
+                id="submit-title"
+                name="title"
+                class="submit-input"
+                placeholder="Name of your application"
+                required
+              >
+            </div>
+
+            <div class="submit-field submit-field--full">
+              <label for="submit-description" class="submit-label">
+                Short Description <span class="submit-required" aria-hidden="true">*</span>
+              </label>
+              <textarea
+                id="submit-description"
+                name="description"
+                class="submit-textarea"
+                placeholder="Briefly describe what your project does and which AI/Google tools you used."
+                maxlength="400"
+                required
+              ></textarea>
+            </div>
+
+            <div class="submit-field">
+              <label for="submit-git-url" class="submit-label">
+                Git Repository Link <span class="submit-required" aria-hidden="true">*</span>
+              </label>
+              <input
+                type="url"
+                id="submit-git-url"
+                name="gitUrl"
+                class="submit-input"
+                placeholder="https://github.com/username/project"
+                required
+              >
+            </div>
+
+            <div class="submit-field">
+              <label for="submit-live-url" class="submit-label">
+                Deployed Website Link <span class="submit-optional">(Optional)</span>
+              </label>
+              <input
+                type="url"
+                id="submit-live-url"
+                name="liveUrl"
+                class="submit-input"
+                placeholder="https://your-project.netlify.app"
+              >
+            </div>
+
+            <div id="submit-error-box" class="submit-error submit-field--full" role="alert" hidden></div>
+
+            <div class="submit-actions submit-field--full">
+              <button type="submit" id="submit-project-btn" class="btn btn-primary" style="min-height:48px;">Submit Project</button>
+              <button type="reset" class="btn btn-secondary" style="min-height:48px;">Reset</button>
+            </div>
+          </form>
+
+          <div id="submit-result-box" aria-live="polite" hidden></div>
+        </div>
+      </div>
+    </section>
+
     <!-- 10. Verify Certificate -->
-    <section id="verify" class="section-padding" data-reveal="fade-up">
+    <section id="verify" class="section-padding section-alt" data-reveal="fade-up">
       <div class="container">
         <div class="text-center">
           <span class="section-label">Authenticity</span>

@@ -2922,3 +2922,162 @@ p {
   object-fit: contain;
   filter: drop-shadow(0 10px 24px rgba(32, 33, 36, 0.08));
 }
+
+
+/* ==========================================================================
+   21. PROJECT SUBMISSION SECTION
+   ========================================================================== */
+
+.submit-card {
+  max-width: 780px;
+  margin-inline: auto;
+  padding: var(--space-8, 2rem);
+  background-color: var(--color-bg-primary, #FFFFFF);
+  border: 1px solid var(--color-border, #DADCE0);
+  border-top: 4px solid #4285F4;
+  border-radius: var(--radius-xl, 24px);
+  box-shadow: var(--shadow-md);
+}
+
+.submit-form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-5, 1.25rem);
+}
+
+@media (min-width: 768px) {
+  .submit-form {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .submit-field--full {
+    grid-column: 1 / -1;
+  }
+}
+
+.submit-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.submit-label {
+  font-size: var(--font-size-sm, 0.875rem);
+  font-weight: var(--font-weight-medium, 500);
+  color: var(--color-text-primary, #202124);
+}
+
+.submit-required {
+  color: #EA4335;
+  font-weight: 700;
+}
+
+.submit-optional {
+  font-weight: 400;
+  color: var(--color-text-secondary, #5F6368);
+  font-size: 0.8rem;
+}
+
+.submit-input,
+.submit-select,
+.submit-textarea {
+  width: 100%;
+  min-height: 48px;
+  padding: 0.7rem 0.95rem;
+  font-family: var(--font-family-primary);
+  font-size: 1rem;
+  color: var(--color-text-primary, #202124);
+  background-color: var(--color-bg-secondary, #F8F9FA);
+  border: 1px solid var(--color-border, #DADCE0);
+  border-radius: 12px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.submit-textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+
+.submit-input:focus,
+.submit-select:focus,
+.submit-textarea:focus {
+  outline: none;
+  border-color: #4285F4;
+  background-color: var(--color-bg-primary, #FFFFFF);
+  box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.18);
+}
+
+.submit-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.submit-error {
+  padding: 0.85rem 1rem;
+  border-radius: 12px;
+  background-color: #FCE8E6;
+  color: #C5221F;
+  border: 1px solid rgba(234, 67, 53, 0.35);
+  font-size: 0.92rem;
+  font-weight: 500;
+}
+
+.submit-success-card {
+  margin-top: 1.5rem;
+  padding: 1.5rem;
+  border-radius: 16px;
+  background-color: #E6F4EA;
+  border: 1px solid rgba(52, 168, 83, 0.4);
+}
+
+.submit-success-card__title {
+  margin: 0 0 0.35rem;
+  color: #137333;
+  font-size: 1.2rem;
+}
+
+.submit-success-card__subtitle {
+  margin: 0 0 1rem;
+  color: var(--color-text-secondary, #5F6368);
+  font-size: 0.95rem;
+}
+
+.submit-success-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+.submit-copy-status {
+  display: block;
+  margin-top: 0.65rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #137333;
+}
+
+@media (prefers-color-scheme: dark) {
+  .submit-card {
+    background-color: #202124;
+  }
+  .submit-input,
+  .submit-select,
+  .submit-textarea {
+    background-color: #17181B;
+    color: #E8EAED;
+  }
+  .submit-input:focus,
+  .submit-select:focus,
+  .submit-textarea:focus {
+    background-color: #202124;
+  }
+  .submit-success-card {
+    background-color: rgba(52, 168, 83, 0.14);
+  }
+  .submit-success-card__title,
+  .submit-copy-status {
+    color: #81C995;
+  }
+}
