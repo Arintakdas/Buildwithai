@@ -37,6 +37,75 @@ function isValidEmail(value) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 }
 
+function showToast(message, type = 'success') {
+  let container = document.getElementById('toast-container');
+  if (!container) {
+    container = document.createElement('div');
+    container.id = 'toast-container';
+    container.className = 'toast-container';
+    container.setAttribute('aria-live', 'polite');
+    document.body.appendChild(container);
+  }
+
+  const toast = document.createElement('div');
+  toast.className = 'toast' + (type === 'error' ? ' toast--error' : '');
+  toast.setAttribute('role', 'status');
+
+  const ns = 'http://www.w3.org/2000/svg';
+  const icon = document.createElementNS(ns, 'svg');
+  icon.setAttribute('width', '20');
+  icon.setAttribute('height', '20');
+  icon.setAttribute('viewBox', '0 0 24 24');
+  icon.setAttribute('fill', 'none');
+  icon.setAttribute('aria-hidden', 'true');
+  icon.classList.add('toast__icon');
+
+  const path = document.createElementNS(ns, 'path');
+  path.setAttribute('stroke-width', '2.2');
+  path.setAttribute('stroke-linecap', 'round');
+  path.setAttribute('stroke-linejoin', 'round');
+  if (type === 'error') {
+    path.setAttribute('stroke', '#EA4335');
+    path.setAttribute('d', 'M12 8v5M12 16h.01M12 2a10 10 0 100 20 10 10 0 000-20z');
+  } else {
+    path.setAttribute('stroke', '#34A853');
+    path.setAttribute('d', 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z');
+  }
+  icon.appendChild(path);
+
+  const msgSpan = document.createElement('span');
+  msgSpan.className = 'toast__message';
+  msgSpan.textContent = message;
+
+  const closeBtn = document.createElement('button');
+  closeBtn.type = 'button';
+  closeBtn.className = 'toast__close';
+  closeBtn.setAttribute('aria-label', 'Close notification');
+  closeBtn.textContent = 'x';
+
+  function dismiss() {
+    toast.classList.remove('is-visible');
+    setTimeout(() => {
+      if (toast.parentNode) {
+        toast.parentNode.removeChild(toast);
+      }
+    }, 260);
+  }
+
+  closeBtn.addEventListener('click', dismiss);
+
+  toast.appendChild(icon);
+  toast.appendChild(msgSpan);
+  toast.appendChild(closeBtn);
+  container.appendChild(toast);
+
+  requestAnimationFrame(() => {
+    toast.classList.add('is-visible');
+  });
+
+  setTimeout(dismiss, 4500);
+}
+
 export function initProjectSubmission() {
   const form = document.getElementById('project-submit-form');
   if (!form) {
@@ -267,9 +336,11 @@ export function initProjectSubmission() {
           throw new Error('HTTP ' + res.status);
         }
         renderSuccessCard(payload, true);
+        showToast('Project submitted! Confirmation email sent to ' + payload.email + '.', 'success');
         form.reset();
       } catch (_err) {
         showError('Could not reach the submission server. Please try again or use the Copy/Email option below.');
+        showToast('Submission could not reach the server. Please try again.', 'error');
         renderSuccessCard(payload, false);
       } finally {
         if (submitBtn) {
