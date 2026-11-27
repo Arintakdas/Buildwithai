@@ -1,6 +1,7 @@
-# Keep raw participant spreadsheets with PII out of git history
+# Keep raw participant spreadsheets with PII and helper scripts out of git deployment
 ABCparticipants.xlsx
 data.xlsx
+scripts/
 
 # Python cache and virtual environments
 __pycache__/
