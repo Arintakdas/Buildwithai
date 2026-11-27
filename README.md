@@ -13,6 +13,7 @@ hashing to prevent enumeration of participant records.
 
 ---
 
+
 ## Project Structure
 
 ```
