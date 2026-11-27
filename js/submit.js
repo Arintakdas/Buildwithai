@@ -17,12 +17,11 @@
  * Paste your deployed Google Apps Script Web App URL here to enable
  * automatic Google Sheets storage + participant confirmation emails.
  */
-const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyMeVThjckNFzThP6mat1pW0DsZJZFVhzs946ab3d9wa1w1nS1gdwtq26LVArO2ssFOBg/exec';
-
+const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzorJ0OBe0pyxzO5LpbqbC8Pu0B1vufZGRlzOGSIjXTFsG4vNqqp-36PFDOXmjVb1TWQg/exec';
 /**
  * Fallback organizer email for the mailto button if Apps Script is not set.
  */
-const ORGANIZER_EMAIL = 'gdgoncampus.gcetts@example.com';
+const ORGANIZER_EMAIL = 'entropy@gcetts.ac.in';
 
 function isValidHttpUrl(value) {
   try {
@@ -183,8 +182,8 @@ export function initProjectSubmission() {
     heading.className = 'submit-success-card__title';
     heading.textContent = postedRemotely
       ? (submissionId
-          ? 'Project submitted! ID: ' + submissionId
-          : 'Project submitted! Confirmation email sent.')
+        ? 'Project submitted! ID: ' + submissionId
+        : 'Project submitted! Confirmation email sent.')
       : 'Submission details ready';
     card.appendChild(heading);
 
