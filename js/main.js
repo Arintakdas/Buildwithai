@@ -377,12 +377,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    // The main event date -- 28 Nov 2026, 12:00 PM IST
-    const eventDate = new Date('2026-11-28T12:00:00+05:30');
     const now = new Date();
-
-    // If the entire event day is in the past, mark everything as completed
-    const eventDayPast = now > eventDate;
 
     // Track the first upcoming item so we can attach a mini countdown
     let firstUpcomingItem = null;
@@ -402,7 +397,7 @@ document.addEventListener('DOMContentLoaded', () => {
       let status;
       let cssClass;
 
-      if (eventDayPast || itemDate < todayStart) {
+      if (itemDate < todayStart) {
         status = 'Completed';
         cssClass = 'timeline-item--completed';
       } else if (itemDate >= todayStart && itemDate < todayEnd) {
@@ -435,7 +430,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Mini countdown for the next upcoming item
-    if (firstUpcomingItem && !eventDayPast) {
+    if (firstUpcomingItem) {
       const upcomingDate = new Date(firstUpcomingItem.getAttribute('data-date'));
 
       const miniCountdown = document.createElement('span');
