@@ -1,1 +1,10 @@
-[]
+[
+  {
+    "date": "2026-11-28",
+    "title": "Program Starting Now: Build with AI: ABC",
+    "body": "Welcome to Build with AI: ABC! Please assemble at CSE Lab, 2nd Floor, Faculty Building with your laptop. Our mentors and volunteers are ready to get started.",
+    "category": "Event",
+    "link": "",
+    "pinned": true
+  }
+]
